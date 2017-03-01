@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Parfums</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	
+	
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
+	<script src="js/ngStorage.min.js"></script>
+	<script type="text/javascript" src="js/angular-route.min.js"></script>
+	<script type="text/javascript" src="js/parfums.js"></script>
+
+<style type="text/css">
+</style>
+</head>
+<body ng-controller="homeController">
+
+<div class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container">
+			<div class="navbar-header">
+				<a ng-href="#" class="navbar-brand"> Informatique store</a>
+			</div> 
+
+			<ul class="nav navbar-nav">
+				<li><a ng-href="" class="active">Home</a></li>
+				<li><a href="">Produits</a></li>
+				<li style="width: 300px;left: 10px;top: 10px"><input type="text" class="form-control" id="search"></li>
+				<li style="top: 10px;left: 20px"><input type="submit" class="btn btn-primary" id="search-btn"></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#/c/p" ><span class="glyphicon glyphicon-shopping-cart"></span> Panier <span class="badge">{{$storage.panier.length}}</span></a>
+				
+				
+				</li>
+				<li><a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Login</a>
+						<ul class="dropdown-menu">
+							<div style="width:300px;">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										Connexion
+									</div>
+									<div class="panel-heading">
+										<label for="email">Email :</label>
+										<input type="text" id="email" class="form-control" required/>
+										<label for="pass">Mot de passe :</label>
+										<input type="password" id="pass" class="form-control" required/>
+										<p><br/></p>
+										<a href="#" style="color:white;list-style: none;">Mot de passe Oublier</a>
+										<input type="submit" class="btn btn-success" style="float:right;" id="login" value="Login">
+									</div>
+									<div class="panel-footer"> </div>
+								</div>
+
+
+							</div>
+
+						</ul>
+				</li>
+
+				<li><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> Inscrire</a>
+				<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Nouveau Client</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-10"> 
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+				</li>
+
+
+			</ul>
+	</div>
+</div>
+
+<p><br/></p>
+<p><br/></p>
+
+
+<div class="container wrapper" ng-controller="image">
+<div id="carousel-id" class="carousel slide container" data-ride="carousel" style="margin-top: 31px">
+	<ol class="carousel-indicators" >
+		<li data-target="#carousel-id" data-slide-to="0" class="" ></li>
+		<li data-target="#carousel-id" data-slide-to="1" class="" ></li>
+		<li data-target="#carousel-id" data-slide-to="2" class="" ></li>
+	</ol>
+		<div class="item active" >
+			<img style="width: 100%;height: 400px" ng-src="images/femme/{{prods.image}}">
+			<div class="container">
+				<div class="carousel-caption">
+					<h1>One more for good measure.</h1>
+					<p><a class="btn btn-lg btn-primary" href="#" role="button">Acheter</a></p>
+				</div>
+			</div>
+		</div>
+	<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+</div>
+
+
+<p><br/></p>
+
+
+		<div class="row">
+
+		<div class="col-lg-1">
+		
+			
+		</div>
+		<div class="col-lg-2">
+			<div class="nav nav-pills nav-stacked">
+				<li class="active"><a href="#" class="active"><h4>Matériels</h4></a></li>
+				
+				<li ng-repeat="cat in categories"><a ng-href="#/{{cat.idcat}}">{{cat.titre}}</a></li>
+				
+			</div>
+			<div class="nav nav-pills nav-stacked">
+				<li class="active"><a href="#" class="active"><h4>Livres</h4></a></li>
+				<li><a href="#">Catégories<span class="badge">14</span></a></li>
+				<li><a href="#">Catégories</a></li>
+				<li><a href="#">Catégories</a></li>
+			</div>
+			</div>
+		<div class="col-lg-8">
+		<div ng-view>
+
+
+
+
+
+
+
+		</div>
+
+		<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class="img-rounded" src="images/art1.jpg" alt="...">
+      <div class="caption">
+        <h3>Matériel Informatique</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        .</p>
+        <p><a href="#" class="btn btn-primary" role="button">Suite</a> </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class="img-rounded" src="images/art1.jpg" alt="...">
+      <div class="caption">
+        <h3>Matériel Informatique</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        .</p>
+        <p><a href="#" class="btn btn-primary" role="button">Suite</a> </p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class="img-rounded" src="images/art1.jpg" alt="...">
+      <div class="caption">
+        <h3>Matériel Informatique</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        .</p>
+        <p><a href="#" class="btn btn-primary" role="button">Suite</a> </p>
+      </div>
+    </div>
+    
+  </div>
+</div>	
+		</div>
+		<div class="col-lg-1"></div>
+		
+		</div>
+
+</div>
+
+<footer class="footer-distributed">
+
+		
+
+		</footer>
+</body>
+</html>
